@@ -6,10 +6,12 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@antv/g6": "^4.3.11",
+    "aki_js_utils": "^1.2.1",
     "vue": "^3.0.4"
   },
   "devDependencies": {
-    "vite": "^1.0.0-rc.13",
-    "@vue/compiler-sfc": "^3.0.4"
+    "@vue/compiler-sfc": "^3.0.4",
+    "vite": "^1.0.0-rc.13"
   }
 }
