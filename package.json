@@ -8,10 +8,13 @@
   "dependencies": {
     "@antv/g6": "^4.3.11",
     "aki_js_utils": "^1.2.1",
+    "insert-css": "^2.0.0",
     "vue": "^3.0.4"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
+    "less": "^4.1.2",
+    "less-loader": "^4.1.0",
     "vite": "^1.0.0-rc.13"
   }
 }
