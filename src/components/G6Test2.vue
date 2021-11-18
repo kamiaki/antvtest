@@ -1,27 +1,28 @@
 <template>
     <div class="aaaa">
-        <div>test1</div>
+        <div>test2</div>
         <div id="container"></div>
     </div>
 </template>
 
 <script>
-    import {onMounted} from 'vue'
+    import {onMounted, onUpdated, onUnmounted} from 'vue'
 
-
+    import G6 from '@antv/g6';
+    import {isNumber, isArray} from '@antv/util';
 
     export default {
         name: "G6Test1",
         setup() {
             onMounted(() => {
-                console.log('test1 mounted!')
+                console.log('mounted!')
             })
         }
     }
 </script>
 
 <style lang="less">
-    .aaaa{
+    .aaaa {
         .g6-component-contextmenu {
             position: absolute;
             z-index: 2;
@@ -29,7 +30,7 @@
             background-color: #363b40;
             border-radius: 6px;
             font-size: 14px;
-            color: hsla(0,0%,100%,.85);
+            color: hsla(0, 0%, 100%, .85);
             width: fit-content;
             transition: opacity .2s;
             text-align: center;
@@ -37,10 +38,12 @@
             box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.6);
             border: 0px;
         }
+
         .g6-component-contextmenu ul {
             padding-left: 0px;
             margin: 0;
         }
+
         .g6-component-contextmenu li {
             cursor: pointer;
             list-style-type: none;
@@ -48,6 +51,7 @@
             margin-left: 0;
             line-height: 38px;
         }
+
         .g6-component-contextmenu li:hover {
             color: #aaaaaa;
         }
