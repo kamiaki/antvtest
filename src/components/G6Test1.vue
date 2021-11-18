@@ -13,9 +13,7 @@
         props: ['myProps'],
         setup(props) {
             const myProps = props.myProps
-            const {a} = userTest1()
-            console.info(a)
-            console.info(a.value)
+            userTest1()
             return {myProps}
         }
     }

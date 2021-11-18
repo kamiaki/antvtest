@@ -1,22 +1,17 @@
 <template>
     <div class="aaaa">
-        <div>test2</div>
+        <div>{{myProps.title}}</div>
         <div id="container"></div>
     </div>
 </template>
 
 <script>
-    import {onMounted, onUpdated, onUnmounted} from 'vue'
-
-    import G6 from '@antv/g6';
-    import {isNumber, isArray} from '@antv/util';
-
     export default {
         name: "G6Test1",
-        setup() {
-            onMounted(() => {
-                console.log('mounted!')
-            })
+        props: ['myProps'],
+        setup(props) {
+            const myProps = props.myProps
+            return {myProps}
         }
     }
 </script>

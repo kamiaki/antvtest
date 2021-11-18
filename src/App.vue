@@ -2,7 +2,7 @@
     <span @click="num = 1">test1</span>
     <span @click="num = 2">test2</span>
     <G6Test1 v-if="num === 1" :myProps="{title: 'test1'}"></G6Test1>
-    <G6Test2 v-if="num === 2"></G6Test2>
+    <G6Test2 v-if="num === 2" :myProps="{title: 'test2'}"></G6Test2>
 </template>
 
 <script>
