@@ -6,16 +6,14 @@
 </template>
 
 <script>
-    import {onMounted} from 'vue'
-
-
+    import userTest1 from './useTest1'
 
     export default {
         name: "G6Test1",
         setup() {
-            onMounted(() => {
-                console.log('test1 mounted!')
-            })
+            const {a} = userTest1()
+            console.info(a)
+            console.info(a.value)
         }
     }
 </script>
