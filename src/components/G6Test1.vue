@@ -1,6 +1,6 @@
 <template>
     <div class="aaaa">
-        <div>test1</div>
+        <div>{{myProps.title}}</div>
         <div id="container"></div>
     </div>
 </template>
@@ -10,10 +10,13 @@
 
     export default {
         name: "G6Test1",
-        setup() {
+        props: ['myProps'],
+        setup(props) {
+            const myProps = props.myProps
             const {a} = userTest1()
             console.info(a)
             console.info(a.value)
+            return {myProps}
         }
     }
 </script>
