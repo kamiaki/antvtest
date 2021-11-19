@@ -31,11 +31,19 @@ export default function () {
         ],
     };
 
+    // 实例化 minimap 插件
+    const minimap = new G6.Minimap({
+        size: [100, 100],
+        className: 'minimap',
+        type: 'delegate',
+    });
 
     const init = function () {
         // 创建 G6 图实例
         graph = new G6.Graph({
             container: 'mountNode', // 指定图画布的容器 id，与第 9 行的容器对应
+            // 插件
+            plugins: [minimap], // 将 minimap 实例配置到图上
             // 画布
             renderer: 'canvas', // 渲染类型 canvas 和 svg
             width: 200,// 画布宽
@@ -77,6 +85,7 @@ export default function () {
             layout: {
                 // Object，可选，布局的方法及其配置项，默认为 random 布局。
                 type: 'force',
+                duration: 500, // Number，一次动画的时长
                 preventOverlap: true,
                 nodeSize: 30,
                 // workerEnabled: true, // 是否启用 webworker
@@ -93,8 +102,7 @@ export default function () {
             // 动画时间
             animate: true, // Boolean，切换布局时是否使用动画过度，默认为 false
             animateCfg: {
-                duration: 500, // Number，一次动画的时长
-                easing: 'linearEasing', // String，动画函数
+               easing: 'linearEasing', // String，动画函数
             },
         });
         // 鼠标放上去改变状态的事件
