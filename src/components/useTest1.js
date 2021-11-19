@@ -73,6 +73,23 @@ export default function () {
                     },
                 },
             },
+            // 配置布局方式
+            layout: {
+                // Object，可选，布局的方法及其配置项，默认为 random 布局。
+                type: 'force',
+                preventOverlap: true,
+                nodeSize: 30,
+                // workerEnabled: true, // 是否启用 webworker
+                // gpuEnabled: true // 是否使用 gpu 版本的布局算法，G6 4.0 支持，目前仅支持 gForce 及 fruchterman
+                // ...                    // 其他配置
+            },
+            // 模式 定义了两种模式
+            // graph.setMode('edit'); 通过这个方法切换到编辑模式 然后就不能作坊了
+            modes: {
+                // 支持的 behavior
+                default: ['drag-canvas', 'zoom-canvas'],
+                edit: ['click-select'],
+            },
         });
         // 鼠标放上去改变状态的事件
         graph.on('node:mouseenter', (evt) => {
