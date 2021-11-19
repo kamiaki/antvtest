@@ -62,7 +62,26 @@ export default function () {
                     // ... 其他样式属性
                 },
             },
-
+            // 定义鼠标放上去改变状态之后对应的颜色
+            nodeStateStyles: {
+                hover: {
+                    // keyShape 的状态样式
+                    fill: '#d3adf7',
+                    // name 为 node-label 的子图形在该状态值下的样式
+                    'node-label': {
+                        fontSize: 15
+                    },
+                },
+            },
+        });
+        // 鼠标放上去改变状态的事件
+        graph.on('node:mouseenter', (evt) => {
+            const {item} = evt;
+            graph.setItemState(item, 'hover', true);
+        });
+        graph.on('node:mouseleave', (evt) => {
+            const {item} = evt;
+            graph.setItemState(item, 'hover', false);
         });
         // 读取数据
         graph.data(data);
