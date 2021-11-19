@@ -1,6 +1,8 @@
 <template>
-    <div>{{myProps.title}}</div>
-    <div id="mountNode2"></div>
+   <div style="height: 100%">
+       <div class="title">{{myProps.title}}</div>
+       <div id="mountNode2"></div>
+   </div>
 </template>
 
 <script>
@@ -17,4 +19,11 @@
 </script>
 
 <style lang="less">
+    .title{
+        height: 10%;
+    }
+    #mountNode2{
+        width: 100%;
+        height: 90%;
+    }
 </style>

@@ -31,23 +31,12 @@ export default function () {
         ],
     };
 
-    // 实例化 minimap 插件
-    const minimap = new G6.Minimap({
-        size: [100, 100],
-        className: 'minimap',
-        type: 'delegate',
-    });
-
     const init = function () {
         // 创建 G6 图实例
         graph = new G6.Graph({
             container: 'mountNode2', // 指定图画布的容器 id，与第 9 行的容器对应
-            // 插件
-            plugins: [minimap], // 将 minimap 实例配置到图上
             // 画布
             renderer: 'canvas', // 渲染类型 canvas 和 svg
-            width: 200,// 画布宽
-            height: 200,// 画布高
             fitView: true, // 图片自适应画布
             fitViewPadding: 10, // 图自适应画布时的四周留白像素值
             fitCenter: true, // 是否平移图使其中心对齐到画布中心
