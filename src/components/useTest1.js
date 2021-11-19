@@ -90,6 +90,12 @@ export default function () {
                 default: ['drag-canvas', 'zoom-canvas'],
                 edit: ['click-select'],
             },
+            // 动画时间
+            animate: true, // Boolean，切换布局时是否使用动画过度，默认为 false
+            animateCfg: {
+                duration: 500, // Number，一次动画的时长
+                easing: 'linearEasing', // String，动画函数
+            },
         });
         // 鼠标放上去改变状态的事件
         graph.on('node:mouseenter', (evt) => {
