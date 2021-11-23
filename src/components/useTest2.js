@@ -221,7 +221,7 @@ export default function () {
 
                     // tag for new node
                     if (cfg.new) {
-                        group.addShape('circle', {
+                        group.addShape('rect', {
                             attrs: {
                                 x: width / 2 - 3,
                                 y: -height / 2 + 3,
@@ -428,6 +428,7 @@ export default function () {
             {
                 setState: (name, value, item) => {
                     const group = item.get('group');
+                    console.info(group)
                     const model = item.getModel();
                     if (name === 'focus') {
                         const back = group.find((ele) => ele.get('name') === 'back-line');
