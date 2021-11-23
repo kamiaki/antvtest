@@ -18,7 +18,7 @@
             G6Test1, G6Test2
         },
         setup() {
-            const num = ref(1)
+            const num = ref(2)
             return {num}
         }
     }

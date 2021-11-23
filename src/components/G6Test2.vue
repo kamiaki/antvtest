@@ -1,7 +1,7 @@
 <template>
    <div style="height: 100%">
        <div class="title">{{myProps.title}}</div>
-       <div id="mountNode2"></div>
+       <div id="container"></div>
    </div>
 </template>
 

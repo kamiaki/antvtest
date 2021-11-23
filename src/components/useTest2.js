@@ -1,15 +1,10 @@
 import G6 from '@antv/g6';
+import {isNumber, isArray} from '@antv/util';
 import insertCss from 'insert-css';
-import { isNumber, isArray } from '@antv/util';
 import {ref, onMounted} from 'vue'
+import Mydata from './useTest2Data.js'
 
 export default function () {
-// 实际开发中把 window.AntVUtil 换成从 @antv/util 引入的相关模块
-// replace window.AntVUtil.isObject with
-
-// 我们用 insert-css 演示引入自定义样式
-// 推荐将样式添加到自己的样式文件中
-// 若拷贝官方代码，别忘了 npm install insert-css
     insertCss(`
   .g6-component-contextmenu {
     position: absolute;
@@ -42,11 +37,9 @@ export default function () {
 	}
 `);
 
-    const init = function () {
-
-
-        const {labelPropagation, louvain, findShortestPath} = G6.Algorithm;
-        const {uniqueId} = G6.Util;
+    const init = function (){
+        const { labelPropagation, louvain, findShortestPath } = G6.Algorithm;
+        const { uniqueId } = G6.Util;
 
         const NODESIZEMAPPING = 'degree';
         const SMALLGRAPHLABELMAXLENGTH = 5;
@@ -56,7 +49,7 @@ export default function () {
         const NODE_LIMIT = 40; // TODO: find a proper number for maximum node number on the canvas
 
         let graph = null;
-        let currentUnproccessedData = {nodes: [], edges: []};
+        let currentUnproccessedData = { nodes: [], edges: [] };
         let nodeMap = {};
         let aggregatedNodeMap = {};
         let hiddenItemIds = []; // 隐藏的元素 id 数组
@@ -460,7 +453,7 @@ export default function () {
                                 },
                             });
                             if (model.isReal) {
-                                const {lineWidth, path, endArrow, stroke} = keyShape.attr();
+                                const { lineWidth, path, endArrow, stroke } = keyShape.attr();
                                 const back = group.addShape('path', {
                                     attrs: {
                                         lineWidth,
@@ -563,7 +556,7 @@ export default function () {
                                 },
                             });
                             if (model.isReal) {
-                                const {path, stroke, lineWidth} = keyShape.attr();
+                                const { path, stroke, lineWidth } = keyShape.attr();
                                 const back = group.addShape('path', {
                                     attrs: {
                                         path,
@@ -898,7 +891,7 @@ export default function () {
                 alpha,
                 alphaDecay,
                 alphaMin,
-            } = configSettings || {preventOverlap: true};
+            } = configSettings || { preventOverlap: true };
 
             if (!linkDistance && linkDistance !== 0) linkDistance = 225;
             if (!edgeStrength && edgeStrength !== 0) edgeStrength = 50;
@@ -1022,7 +1015,7 @@ export default function () {
 
             edges = processRes.edges;
 
-            graph.changeData({nodes, edges});
+            graph.changeData({ nodes, edges });
 
             hideItems(graph);
             graph.getNodes().forEach((node) => {
@@ -1049,7 +1042,7 @@ export default function () {
                 return 1;
             };
             layout.instance.execute();
-            return {nodes, edges};
+            return { nodes, edges };
         };
 
         const getMixedGraph = (
@@ -1110,7 +1103,7 @@ export default function () {
                 if (expandMap[edge.source] || expandMap[edge.target]) return;
                 else edges.push(edge);
             });
-            return {nodes, edges};
+            return { nodes, edges };
         };
 
         const getNeighborMixedGraph = (
@@ -1124,7 +1117,7 @@ export default function () {
             maxNeighborNumPerNode = 5,
         ) => {
             // update the manipulate position for center gravity of the new nodes
-            manipulatePosition = {x: centerNodeModel.x, y: centerNodeModel.y};
+            manipulatePosition = { x: centerNodeModel.x, y: centerNodeModel.y };
 
             // the neighborSubGraph does not include the centerNodeModel. the elements are all generated new nodes and edges
             const neighborSubGraph = generateNeighbors(centerNodeModel, step, maxNeighborNumPerNode);
@@ -1181,7 +1174,7 @@ export default function () {
                     edges = edges.concat(subNeighbors.edges);
                 }
             }
-            return {nodes, edges};
+            return { nodes, edges };
         };
 
         const getExtractNodeMixedGraph = (
@@ -1243,7 +1236,7 @@ export default function () {
         };
 
         const manageExpandCollapseArray = (nodeNumber, model, collapseArray, expandArray) => {
-            manipulatePosition = {x: model.x, y: model.y};
+            manipulatePosition = { x: model.x, y: model.y };
 
             // 维护 expandArray，若当前画布节点数高于上限，移出 expandedArray 中非 model 祖先的节点)
             if (nodeNumber > NODE_LIMIT) {
@@ -1309,7 +1302,7 @@ export default function () {
             expandArray.push(currentNode);
 
             graph.get('canvas').setCursor('default');
-            return {expandArray, collapseArray};
+            return { expandArray, collapseArray };
         };
 
         const cacheNodePositions = (nodes) => {
@@ -1352,7 +1345,7 @@ export default function () {
                 }
             });
             graph.on('node:mouseenter', (evt) => {
-                const {item} = evt;
+                const { item } = evt;
                 const model = item.getModel();
                 const currentLabel = model.label;
                 model.oriFontSize = model.labelCfg.style.fontSize;
@@ -1365,7 +1358,7 @@ export default function () {
             });
 
             graph.on('node:mouseleave', (evt) => {
-                const {item} = evt;
+                const { item } = evt;
                 const model = item.getModel();
                 const currentLabel = model.label;
                 item.update({
@@ -1376,7 +1369,7 @@ export default function () {
             });
 
             graph.on('edge:mouseenter', (evt) => {
-                const {item} = evt;
+                const { item } = evt;
                 const model = item.getModel();
                 const currentLabel = model.label;
                 item.update({
@@ -1389,7 +1382,7 @@ export default function () {
             });
 
             graph.on('edge:mouseleave', (evt) => {
-                const {item} = evt;
+                const { item } = evt;
                 const model = item.getModel();
                 const currentLabel = model.label;
                 item.update({
@@ -1402,7 +1395,7 @@ export default function () {
                 stopLayout();
                 if (!shiftKeydown) clearFocusItemState(graph);
                 else clearFocusEdgeState(graph);
-                const {item} = evt;
+                const { item } = evt;
 
                 // highlight the clicked node, it is down by click-select
                 graph.setItemState(item, 'focus', true);
@@ -1420,7 +1413,7 @@ export default function () {
             graph.on('edge:click', (evt) => {
                 stopLayout();
                 if (!shiftKeydown) clearFocusItemState(graph);
-                const {item} = evt;
+                const { item } = evt;
                 // highlight the clicked edge
                 graph.setItemState(item, 'focus', true);
             });
@@ -1432,10 +1425,7 @@ export default function () {
             });
         };
 
-        fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/relations.json')
-            .then((res) => res.json())
-            .then((data) => {
-                const container = document.getElementById('mountNode2');
+                const container = document.getElementById('container');
                 const descriptionDiv = document.createElement('div');
                 descriptionDiv.innerHTML = `<a href='/en/largegraph' target='_blanck'>Click【HERE】To Full Demo</a>
       <br/>
@@ -1453,8 +1443,8 @@ export default function () {
                 CANVAS_HEIGHT = (container.scrollHeight || 500) - 30;
 
                 nodeMap = {};
-                const clusteredData = louvain(data, false, 'weight');
-                const aggregatedData = {nodes: [], edges: []};
+                const clusteredData = louvain(Mydata, false, 'weight');
+                const aggregatedData = { nodes: [], edges: [] };
                 clusteredData.clusters.forEach((cluster, i) => {
                     cluster.nodes.forEach((node) => {
                         node.level = 0;
@@ -1491,14 +1481,14 @@ export default function () {
                     aggregatedData.edges.push(cedge);
                 });
 
-                data.edges.forEach((edge) => {
+                Mydata.edges.forEach((edge) => {
                     edge.label = `${edge.source}-${edge.target}`;
                     edge.id = `edge-${uniqueId()}`;
                 });
 
                 currentUnproccessedData = aggregatedData;
 
-                const {edges: processedEdges} = processNodesEdges(
+                const { edges: processedEdges } = processNodesEdges(
                     currentUnproccessedData.nodes,
                     currentUnproccessedData.edges,
                     CANVAS_WIDTH,
@@ -1515,7 +1505,7 @@ export default function () {
                         return false;
                     },
                     getContent(evt) {
-                        const {item} = evt;
+                        const { item } = evt;
                         if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) {
                             return `<ul>
           <li id='show'>Show all Hidden Items</li>
@@ -1551,7 +1541,7 @@ export default function () {
                         const model = item && item.getModel();
                         const liIdStrs = target.id.split('-');
                         let mixedGraphData;
-                        switch (liIdStAAXrs[0]) {
+                        switch (liIdStrs[0]) {
                             case 'hide':
                                 graph.hideItem(item);
                                 hiddenItemIds.push(model.id);
@@ -1567,7 +1557,7 @@ export default function () {
                                 collapseArray = newArray.collapseArray;
                                 mixedGraphData = getMixedGraph(
                                     clusteredData,
-                                    data,
+                                    Mydata,
                                     nodeMap,
                                     aggregatedNodeMap,
                                     expandArray,
@@ -1576,7 +1566,7 @@ export default function () {
                                 break;
                             case 'collapse':
                                 const aggregatedNode = aggregatedNodeMap[model.clusterId];
-                                manipulatePosition = {x: aggregatedNode.x, y: aggregatedNode.y};
+                                manipulatePosition = { x: aggregatedNode.x, y: aggregatedNode.y };
                                 collapseArray.push(aggregatedNode);
                                 for (let i = 0; i < expandArray.length; i++) {
                                     if (expandArray[i].id === model.clusterId) {
@@ -1586,7 +1576,7 @@ export default function () {
                                 }
                                 mixedGraphData = getMixedGraph(
                                     clusteredData,
-                                    data,
+                                    Mydata,
                                     nodeMap,
                                     aggregatedNodeMap,
                                     expandArray,
@@ -1598,7 +1588,7 @@ export default function () {
                                 collapseArray = [];
                                 mixedGraphData = getMixedGraph(
                                     clusteredData,
-                                    data,
+                                    Mydata,
                                     nodeMap,
                                     aggregatedNodeMap,
                                     expandArray,
@@ -1610,7 +1600,7 @@ export default function () {
                                 mixedGraphData = getNeighborMixedGraph(
                                     model,
                                     expandNeighborSteps,
-                                    data,
+                                    Mydata,
                                     clusteredData,
                                     currentUnproccessedData,
                                     nodeMap,
@@ -1649,7 +1639,7 @@ export default function () {
                 });
 
                 graph = new G6.Graph({
-                    container: 'mountNode2',
+                    container: 'container',
                     width: CANVAS_WIDTH,
                     height: CANVAS_HEIGHT,
                     linkCenter: true,
@@ -1702,9 +1692,8 @@ export default function () {
                 layout.instance.execute();
 
                 bindListener(graph);
-                graph.data({nodes: aggregatedData.nodes, edges: processedEdges});
+                graph.data({ nodes: aggregatedData.nodes, edges: processedEdges });
                 graph.render();
-            });
 
         if (typeof window !== 'undefined')
             window.onresize = () => {
@@ -1713,6 +1702,7 @@ export default function () {
                 if (!container) return;
                 graph.changeSize(container.scrollWidth, container.scrollHeight - 30);
             };
+
     }
 
 
