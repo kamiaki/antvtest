@@ -6,7 +6,7 @@
     </div>
     <G6Test1 v-if="num === 1" :myProps="{title: 'test1'}"></G6Test1>
     <G6Test2 v-if="num === 2" :myProps="{title: 'test2'}" style="height: 90%"></G6Test2>
-    <G6Test3 v-if="num === 3" :myProps="{title: 'test2'}" style="height: 90%"></G6Test3>
+    <G6Test3 v-if="num === 3" :myProps="{title: 'test3'}" style="height: 90%"></G6Test3>
 </template>
 
 <script>
@@ -21,7 +21,7 @@
             G6Test1, G6Test2, G6Test3
         },
         setup() {
-            const num = ref(2)
+            const num = ref(3)
             return {num}
         }
     }
